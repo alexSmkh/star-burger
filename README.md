@@ -65,7 +65,14 @@ SECRET_KEY=django-insecure-0if40nf4nf93n4
 YANDEX_KEY='***'
 ```
 
-Создайте файл базы данных SQLite и отмигрируйте её следующей командой:
+В проекте используется PostgreSQL. Установите и создайте бд. Скопируйте url базы данных в `.env`
+
+Url имеет вид: `postgres://USER:PASSWORD@HOST:PORT/DATABSE_NAME`
+```shell
+DB_URL=***
+```
+
+После настройки выполните миграции:
 
 ```sh
 python manage.py migrate
@@ -150,11 +157,13 @@ Parcel будет следить за файлами в каталоге `bundle
 
 Настроить бэкенд: создать файл `.env` в каталоге `star_burger/` со следующими настройками:
 
-- `PROFILE=production`.
+- `PROFILE=production`
 - `SECRET_KEY` — секретный ключ проекта. Он отвечает за шифрование на сайте. Например, им зашифрованы все пароли на вашем сайте.
 - `ALLOWED_HOSTS` — [см. документацию Django](https://docs.djangoproject.com/en/3.1/ref/settings/#allowed-hosts)
 - `YANDEX_KEY` - для работы сервиса необходимо [зарегистрироваться и получить ключ](https://yandex.ru/dev/maps/geocoder/)
 - `ROLLBAR_KEY` - для работы сервиса логирования ошибок. [Зарегистрируйтесь](https://rollbar.com/), создайте проект и скопируйте ключ.
+- `DB_URL` - url вашей базы данных.
+
 ## Цели проекта
 
 Код написан в учебных целях — это урок в курсе по Python и веб-разработке на сайте [Devman](https://dvmn.org). За основу был взят код проекта [FoodCart](https://github.com/Saibharath79/FoodCart).
