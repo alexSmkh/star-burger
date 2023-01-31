@@ -8,7 +8,7 @@ cd $PROJECT_PATH
 
 source .env
 
-repo_update_result=$(git pull)
+repo_update_result=$(git pull origin master)
 
 if [[ $repo_update_result="Already up to date." ]]
 then
