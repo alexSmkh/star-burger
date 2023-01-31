@@ -9,30 +9,21 @@ env = Env()
 env.read_env()
 
 
-class Profile:
-    PRODUCTION = 'production'
-    DEVELOPMENT = 'development'
-
-
-CURRENT_PROFILE = env('PROFILE', Profile.DEVELOPMENT)
-
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 YANDEX_GEOCODE_KEY = env('YANDEX_KEY')
 
 SECRET_KEY = env('SECRET_KEY')
 
-if CURRENT_PROFILE == Profile.PRODUCTION:
-    DEBUG = False
+DEBUG = env('DEBUG', False)
+
+if env('TURN_ON_ROLLBAR', True):
     ROLLBAR = {
         'access_token': env('ROLLBAR_TOKEN'),
-        'environment': CURRENT_PROFILE,
+        'environment': env('ROLLBAR_ENV', 'production'),
         'code_version': '1.0',
         'root': BASE_DIR,
     }
-elif CURRENT_PROFILE == Profile.DEVELOPMENT:
-    DEBUG = True
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', ['127.0.0.1', 'localhost', '127.0.0.1:8000'])
 

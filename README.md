@@ -61,6 +61,22 @@ pip install -r requirements.txt
 SECRET_KEY=django-insecure-0if40nf4nf93n4
 ```
 
+Включите режим разработки для Django в `.env`:
+```shell
+DEBUG=True
+```
+
+По умолчанию Rollbar включен. Если он при разработке не нужен, то определите:
+```shell
+TURN_ON_ROLLBAR=False
+```
+Если нужен, то определите окружение, имя проекта и токен:
+```shell
+ROLLBAR_ENV=***
+ROLLBAR_TOKEN=***
+ROLLBAR_NAME=***
+```
+
 Для определения расстояние до ресторана используется сервис `Yandex geocoder`.
 Необходимо [зарегистрироваться и получить ключ](https://yandex.ru/dev/maps/geocoder/), который нужно записать в `.env`:
 ```shell
@@ -159,7 +175,6 @@ Parcel будет следить за файлами в каталоге `bundle
 
 Настроить бэкенд: создать файл `.env` в каталоге `star_burger/` со следующими настройками:
 
-- `PROFILE=production`
 - `SECRET_KEY` — секретный ключ проекта. Он отвечает за шифрование на сайте. Например, им зашифрованы все пароли на вашем сайте.
 - `ALLOWED_HOSTS` — [см. документацию Django](https://docs.djangoproject.com/en/3.1/ref/settings/#allowed-hosts)
 - `YANDEX_KEY` - для работы сервиса необходимо [зарегистрироваться и получить ключ](https://yandex.ru/dev/maps/geocoder/)
